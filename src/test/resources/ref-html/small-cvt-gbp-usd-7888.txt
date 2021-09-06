@@ -1,0 +1,1 @@
+Target currency = 93.22182 EUR

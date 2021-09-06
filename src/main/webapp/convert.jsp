@@ -1,3 +1,4 @@
+<%@ page import="java.math.BigDecimal" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -10,7 +11,14 @@
 <html>
 <body>
 <%
-    out.println("<h1>" + "Converting " + request.getParameter("from") + " to " + request.getParameter("to") + "</h1>");
+    String sourceCurrency = request.getParameter("from");
+    String targetCurrency = request.getParameter("to");
+    BigDecimal amount = new BigDecimal(request.getParameter("amount"));
+    BigDecimal resultExchange = currencies.convert(amount, sourceCurrency, targetCurrency);
+
+    out.println("<h1>" + "Converting " + sourceCurrency + " to " + targetCurrency + "</h1>");
+    out.println("<p>" + "Amount " + sourceCurrency + " = " + amount + "</p>");
+    out.println("<p>" + targetCurrency + " result value = " + resultExchange + "</p>");
 %>
 </body>
 </html>

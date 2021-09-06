@@ -1,0 +1,1 @@
+Target currency = 160.05990 USD
