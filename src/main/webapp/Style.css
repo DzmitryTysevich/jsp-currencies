@@ -1,4 +1,8 @@
-body{
+body {
     font-family: "Courier New", serif;
     font-size: 16pt;
+}
+
+table, th, td {
+    border: 1px solid black;
 }

@@ -1,1 +1,2 @@
-Target currency = 167.44601 GBP
+Amount BRL = 1133
+GBP result value = 167.44601

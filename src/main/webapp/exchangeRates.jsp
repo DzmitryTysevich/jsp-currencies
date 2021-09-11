@@ -1,29 +1,32 @@
-<%@ page import="java.math.BigDecimal" %>
-<%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:useBean id="currencies" class="com.epam.rd.jsp.currencies.CurrenciesOfCurrentTestCase" scope="request"/>
 
 <!DOCTYPE html>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<jsp:useBean id="currencies" class="com.epam.rd.jsp.currencies.CurrenciesOfCurrentTestCase" scope="request"/>
-<link href="Style.css" rel="stylesheet" type="text/css">
-
 <html>
+<head>
+    <title>Exchange Rates</title>
+    <link href="Style.css" rel="stylesheet" type="text/css">
+</head>
 <body>
-<%
-    String referenceCurrency = request.getParameter("from");
-    out.println("<h1>" + "Exchange Rates for " + referenceCurrency + "</h1>");
-%>
-<ul>
-    <%
-        ArrayList<Map.Entry<String, BigDecimal>> list = new ArrayList<>(currencies.getExchangeRates(referenceCurrency).entrySet());
-        for (Map.Entry<String, BigDecimal> stringBigDecimalEntry : list) {
-            if (!stringBigDecimalEntry.getKey().equals(referenceCurrency)) {
-                out.println("<li>" + stringBigDecimalEntry + "</li>");
-            }
-        }
-    %>
-</ul>
+<c:set var="from" value="from" scope="request"/>
+<c:set var="referenceCurrency" value="${param.get(from)}" scope="request"/>
+<c:set var="listCurrencies" value="${currencies.getExchangeRates(referenceCurrency)}" scope="request"/>
+
+<h1>Exchange Rates for ${referenceCurrency}</h1>
+<table>
+    <tr>
+        <td>currency</td>
+        <td>value</td>
+    </tr>
+    <c:forEach var="currencyWithValue" items="${listCurrencies}">
+        <c:if test="${!currencyWithValue.getKey().equals(referenceCurrency)}">
+            <tr>
+                <td>${currencyWithValue.getKey()}</td>
+                <td>${currencyWithValue.getValue()}</td>
+            </tr>
+        </c:if>
+    </c:forEach>
+</table>
 </body>
 </html>
