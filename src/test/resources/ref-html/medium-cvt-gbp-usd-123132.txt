@@ -1,1 +1,2 @@
-Target currency = 162.95329 USD
+Amount GBP = 123.123
+USD result value = 162.95329

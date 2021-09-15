@@ -1,1 +1,2 @@
-Target currency = 55.77688 CNY
+Amount EUR = 7.7
+CNY result value = 55.77688

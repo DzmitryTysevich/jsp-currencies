@@ -1,1 +1,2 @@
-Target currency = 5348.75630 SEK
+Amount PLN = 2323
+SEK result value = 5348.75630
